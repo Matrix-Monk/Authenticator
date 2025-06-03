@@ -1,8 +1,8 @@
-import { registerSchema, loginSchema } from "../validators/auth.schema";
-import { verifyRecaptcha } from "../utils/recaptcha";
-import { findUserByEmail, findUserByUsername, createUser, generateToken, verifyPassword, } from "../services/auth.services";
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../config";
+import { JWT_SECRET } from "../config.js";
+import { registerSchema, loginSchema } from "../validators/auth.schema.js";
+import { verifyRecaptcha } from "../utils/recaptcha.js";
+import { findUserByEmail, findUserByUsername, createUser, generateToken, verifyPassword, } from "../services/auth.services.js";
 export async function registerUser(req, res) {
     try {
         const data = registerSchema.parse(req.body);

@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 
-import { PrismaClient } from "../generated/prisma/client.js";
-const prisma = new PrismaClient();
-dotenv.config();
+import prisma from "../prisma/client.js";
+import { JWT_SECRET } from "../config.js";
+
+
 
 const authMiddleware = async (req : Request, res: Response, next: NextFunction) => {
  
@@ -18,7 +18,7 @@ const authMiddleware = async (req : Request, res: Response, next: NextFunction) 
       return
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "default");
+    const decoded = jwt.verify(token, JWT_SECRET || "default");
 
 
     const userId = typeof decoded === "object" && "userId" in decoded ? decoded.userId : null;

@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import prisma from "../prisma/client";
-import { JWT_SECRET } from "../config";
+import prisma from "../prisma/client.js";
+import { JWT_SECRET } from "../config.js";
 export async function findUserByEmail(email) {
     return prisma.user.findUnique({ where: { email } });
 }
